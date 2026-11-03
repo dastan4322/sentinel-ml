@@ -12,6 +12,38 @@ versioned artifacts, a FastAPI service, drift analysis, automated tests, and Git
 > They are **not evidence of real-world fraud detection performance**. Run the public-data
 > workflow below before making dataset-specific claims in your portfolio.
 
+## Try the interactive playground
+
+The [hosted playground](https://sentinel-ml-dastan-playground.idealolive130.chatgpt.site)
+lets the site owner try the synthetic model without installing Python. The Site starts
+private; sharing it with portfolio visitors requires changing its access explicitly.
+
+For a local demo, only Python 3 is needed; no ML packages or model training:
+
+```bash
+git clone https://github.com/dastan4322/sentinel-ml.git
+cd sentinel-ml
+make playground
+```
+
+Open http://127.0.0.1:8000. Select **Lower-score example** or **Higher-score example**,
+then **Score transaction**. Edit the amount or expand the feature editor and score again.
+Download the result as JSON. Examples were chosen by minimum/maximum held-out scores
+to demonstrate both decisions; they are not representative performance evidence.
+
+This playground exports the actual frozen synthetic HGB trees to JavaScript. It runs
+entirely in your browser and does not call the FastAPI service or send your inputs to a
+prediction server. Browser predictions matched Python on all 4,000 chronological test
+transactions within 1.2e-16. See `demo/parity.json`; CI also checks 32 golden vectors and
+invalid-input rejection. Anonymized PCA features are needed to score new transactions;
+a merchant name or an amount alone cannot substitute for the trained feature schema.
+
+The pre-exported model works independently of your Python package versions. To re-export
+from the trusted local synthetic HGB artifact, install the project dependencies and Node
+18+, run `make demo` in a fresh output state, then `python scripts/export_browser_demo.py`.
+The exporter uses sklearn's internal tree layout and deliberately rejects unsupported
+models. The FastAPI serving/training workflows below remain separate.
+
 ## Why this problem
 
 A fraud team has limited review capacity. Accuracy is misleading when fraud is rare;

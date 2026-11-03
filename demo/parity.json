@@ -1,0 +1,6 @@
+{
+  "rows": 4000,
+  "max_absolute_error": 1.1102230246251565e-16,
+  "invalid_inputs_rejected": 4,
+  "source": "synthetic"
+}

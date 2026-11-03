@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Try Sentinel ML: an interactive synthetic fraud scoring model that runs in your browser.">
+<title>Sentinel ML · Transaction playground</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header><a class="brand" href="./"><span class="mark">S</span> Sentinel<span class="light">ML</span></a><nav><a href="https://github.com/dastan4322/sentinel-ml" target="_blank" rel="noreferrer">View source ↗</a><span class="badge"><span class="dot"></span> Browser inference</span></nav></header>
+<main>
+<div class="eyebrow">MACHINE LEARNING / INTERACTIVE DEMO</div>
+<h1>A transaction.<br>A score. <span>A decision.</span></h1>
+<p class="intro">Explore how a fraud model turns transaction features into a review recommendation. Start with an example, change the inputs, and score it again.</p>
+<div class="notice"><span class="notice-icon">i</span><p><strong>Synthetic demonstration.</strong> This model was trained on generated data. Scores illustrate the workflow and are not calibrated probabilities of real fraud. All scoring happens in your browser.</p></div>
+<div class="workspace">
+<section class="panel input-panel" aria-labelledby="input-heading">
+<div class="panel-top"><div><div class="eyebrow">01 / INPUT</div><h2 id="input-heading">Build a transaction</h2></div><span class="tag">29 features</span></div>
+<p class="helper">Load a prepared transaction to explore either side of the model’s review threshold.</p>
+<div class="samples"><button id="low" type="button" disabled>↘ Lower-score example</button><button id="high" type="button" disabled>↗ Higher-score example</button></div>
+<label for="amount">Transaction amount</label><div class="amount-row"><input id="amount" type="number" min="0" max="1000000000" step="any" disabled><span>dataset units</span></div>
+<p class="helper small">Amount alone cannot determine fraud. The 28 anonymized features also influence the score.</p>
+<details><summary>Edit the 28 features &amp; transaction ID</summary><label class="sr-only" for="transaction">Transaction JSON</label><textarea id="transaction" rows="14" spellcheck="false" aria-describedby="feature-note"></textarea><p class="helper small" id="feature-note">V1–V28 are anonymized PCA components. Paste prepared numeric features; card numbers and merchant names are not model inputs.</p></details>
+<p class="example-note" id="example-note">Loading the trained model…</p>
+<button id="score" class="primary" type="button" disabled>Score transaction <span>→</span></button>
+<p id="error" class="error" role="alert" hidden></p>
+</section>
+<section class="panel result-panel" aria-labelledby="result-heading" aria-live="polite">
+<div class="panel-top"><div><div class="eyebrow">02 / PREDICTION</div><h2 id="result-heading">Review recommendation</h2></div><span class="tag" id="model-state">Loading</span></div>
+<div id="result" hidden>
+<div class="decision" id="decision"><span id="decision-symbol">✓</span><div><h3 id="decision-title"></h3><p id="decision-text"></p></div></div>
+<div class="score-caption">MODEL RISK SCORE</div><div class="score-number" id="risk">—</div><p class="helper small">A score between 0 and 1. Higher means more suspicious to this model.</p>
+<div class="scale" aria-hidden="true"><div id="score-fill"></div><i id="threshold-marker"></i></div><div class="scale-labels"><span>0.0 · Lower</span><span>1.0 · Higher</span></div>
+<dl><div><dt>Review threshold</dt><dd id="threshold"></dd></div><div><dt>Transaction ID</dt><dd id="result-id"></dd></div><div><dt>Inference time</dt><dd id="latency"></dd></div><div><dt>Model</dt><dd>Histogram gradient boosting</dd></div></dl>
+<button id="download" class="secondary" type="button">Download prediction JSON ↓</button>
+</div>
+<p id="empty" class="empty">Load an example, then select “Score transaction” to see the model’s recommendation.</p>
+</section>
+</div>
+<section class="explanation"><div><span>01</span><h3>Learn from the past</h3><p>Training uses the earliest transactions. Later periods are reserved for validation and testing.</p></div><div><span>02</span><h3>Choose a review policy</h3><p>The threshold balances assumed false-alert and missed-fraud costs, with a 2% alert cap on validation.</p></div><div><span>03</span><h3>Investigate the result</h3><p>A review flag is a recommendation, not proof of fraud. Future alert volume can exceed the validation cap.</p></div></section>
+<footer><p>SENTINEL ML <span>·</span> Synthetic data. Real model inference.</p><a href="https://github.com/dastan4322/sentinel-ml/blob/main/README.md" target="_blank" rel="noreferrer">Explore the full pipeline ↗</a></footer>
+</main>
+<script type="module" src="./app.mjs"></script>
+</body></html>

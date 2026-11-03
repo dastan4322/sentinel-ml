@@ -20,6 +20,10 @@ jobs:
           python-version: ${{ matrix.python }}
           cache: pip
       - run: python -m pip install -e '.[dev]'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node demo/verify.mjs
       - run: ruff check .
       - run: pytest -q
       - run: python -m pip check

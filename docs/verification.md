@@ -43,3 +43,17 @@ Run the benchmark on your M1 before claiming laptop performance.
 production monitoring window. `demo-results/http-smoke.json` captures actual responses.
 `demo-results/environment.txt` records the installed packages; install the project
 separately with `pip install -e .` when reproducing that environment.
+
+## Interactive playground follow-up
+
+The browser exports the frozen synthetic HGB model rather than reimplementing training.
+All 4,000 test scores match Python with maximum absolute error 1.11e-16. The repository
+includes 32 golden vectors for Node-based CI and invalid-input checks. Automated visual
+browser testing was unavailable in this environment; JavaScript syntax, numerical parity,
+input validation, and the existing 28 Python tests were checked.
+
+The initial GitHub publication passed all four Linux/macOS × Python 3.11/3.12 CI jobs:
+https://github.com/dastan4322/sentinel-ml/actions/runs/41665049743
+
+The hosted playground was deployed through Sites as an owner-private Site. It does not
+call the FastAPI service. Model inference happens in the browser.
