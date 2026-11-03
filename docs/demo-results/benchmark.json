@@ -1,0 +1,7 @@
+{
+  "batch_size": 100,
+  "iterations": 100,
+  "p50_ms": 4.352946499977861,
+  "p95_ms": 30.82835289999933,
+  "scope": "In-process warm inference; excludes HTTP and concurrency"
+}

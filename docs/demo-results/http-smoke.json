@@ -1,0 +1,21 @@
+{
+  "health": {
+    "status": "ready",
+    "model_version": "a368814892ba",
+    "source": "synthetic"
+  },
+  "prediction": {
+    "model_version": "a368814892ba",
+    "source": "synthetic",
+    "threshold": 0.10960125589543833,
+    "predictions": [
+      {
+        "transaction_id": "example-001",
+        "risk_score": 0.006637260566341363,
+        "review": false
+      }
+    ]
+  },
+  "invalid_request_status": 422,
+  "metrics_status": 200
+}

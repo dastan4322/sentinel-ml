@@ -1,0 +1,124 @@
+{
+  "source": "synthetic",
+  "dataset_sha256": "82e72862bb6d0bca6991e2aac521948458044e99d4065f0cffd9974eca56c2a6",
+  "seed": 42,
+  "features": [
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "V6",
+    "V7",
+    "V8",
+    "V9",
+    "V10",
+    "V11",
+    "V12",
+    "V13",
+    "V14",
+    "V15",
+    "V16",
+    "V17",
+    "V18",
+    "V19",
+    "V20",
+    "V21",
+    "V22",
+    "V23",
+    "V24",
+    "V25",
+    "V26",
+    "V27",
+    "V28",
+    "Amount"
+  ],
+  "partitions": {
+    "train": {
+      "rows": 12000,
+      "fraud": 179,
+      "start": 0.0,
+      "end": 11999.0
+    },
+    "validation": {
+      "rows": 4000,
+      "fraud": 68,
+      "start": 12000.0,
+      "end": 15999.0
+    },
+    "test": {
+      "rows": 4000,
+      "fraud": 65,
+      "start": 16000.0,
+      "end": 19999.0
+    }
+  },
+  "policy": {
+    "fp_cost": 5.0,
+    "fn_cost": 250.0,
+    "validation_alert_cap": 0.02
+  },
+  "candidates": {
+    "logistic": {
+      "threshold": 0.16506147263962165,
+      "validation": {
+        "average_precision": 0.2509075750029344,
+        "roc_auc": 0.926399527257495,
+        "brier_score": 0.014416426881415164,
+        "precision": 0.3709677419354839,
+        "recall": 0.3382352941176471,
+        "alert_rate": 0.0155,
+        "cost": 11445.0,
+        "tn": 3893,
+        "fp": 39,
+        "fn": 45,
+        "tp": 23
+      }
+    },
+    "hist_gradient_boosting": {
+      "threshold": 0.10960125589543833,
+      "validation": {
+        "average_precision": 0.2506686809234279,
+        "roc_auc": 0.9166267727843935,
+        "brier_score": 0.014877331497336135,
+        "precision": 0.34782608695652173,
+        "recall": 0.35294117647058826,
+        "alert_rate": 0.01725,
+        "cost": 11225.0,
+        "tn": 3887,
+        "fp": 45,
+        "fn": 44,
+        "tp": 24
+      }
+    }
+  },
+  "winner": "hist_gradient_boosting",
+  "threshold": 0.10960125589543833,
+  "test": {
+    "average_precision": 0.2404386740969087,
+    "roc_auc": 0.9064138402893168,
+    "brier_score": 0.014095870170623314,
+    "precision": 0.2898550724637681,
+    "recall": 0.3076923076923077,
+    "alert_rate": 0.01725,
+    "cost": 11495.0,
+    "tn": 3886,
+    "fp": 49,
+    "fn": 45,
+    "tp": 20
+  },
+  "no_alert_test_cost": 16250.0,
+  "test_prevalence": 0.01625,
+  "training_seconds": 1.5667721009999696,
+  "environment": {
+    "python": "3.12.14",
+    "sklearn": "1.7.2"
+  },
+  "limitations": [
+    "Synthetic scores are engineering checks only",
+    "No delayed-label or customer-identity information",
+    "Capacity enforced on validation only; future volume can exceed it",
+    "Scores have not been separately calibrated"
+  ],
+  "artifact_sha256": "a368814892ba4940af3a06e424652be193db65641edd84c9bbd84473ee722666"
+}
